@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/textViewFilmEmprunt"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Titre : "/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:id="@+id/edit_text_titre"
+                android:layout_height="wrap_content"
+                android:hint="ajouter un titre"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/text_view_auteur"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Auteur : "/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:id="@+id/edit_text_auteur"
+                android:layout_height="wrap_content"
+                android:hint="ajouter un auteur"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/text_view_genre"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Genre :"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:id="@+id/edit_text_genre"
+                android:layout_height="wrap_content"
+                android:textSize="14.7sp"
+                android:hint="ajouter un genre( action, policier, comique )"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/text_view_emprunt"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Disponibile : "/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:id="@+id/edit_text_emprunt"
+                android:layout_height="wrap_content"
+                android:hint="Coché = oui"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/text_view_nom_emprunt"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Emprunteur : "/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:id="@+id/edit_text_nom_emprunt"
+                android:layout_height="wrap_content"
+                android:hint="nom de l'emprunteur"
+                />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Ajouter ce film"
+            android:id="@+id/button_add_film"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
