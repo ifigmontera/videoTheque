@@ -5,6 +5,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -26,10 +28,10 @@
 
 
         <Button
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Ajouter ce film"
+            android:layout_gravity="center"
+            android:text="Supprimer ce film"
             android:id="@+id/button_remove_film"/>
 
 
