@@ -20,6 +20,11 @@ import java.util.List;
  */
 public class FilmAdapter extends BaseAdapter {
     private List<Film> filmList;
+    private String titre;
+    private String auteur;
+    private String genre;
+    private String emprunt;
+    private String nomEmprunt;
     private Context pContext;
     private LayoutInflater mInflater;
 
@@ -58,12 +63,17 @@ public class FilmAdapter extends BaseAdapter {
         TextView filmNomEmprunt = (TextView)linearLayout.findViewById(R.id.textViewFilmNomEmprunt);
 
         Log.e("test",filmList.get(position).getTitre()+" "+ filmList.get(position).getAuteur()+" "+filmList.get(position).getGenre()+" "+position);
-
-        filmTitre.setText(filmList.get(position).getTitre());
-        filmAuteur.setText(filmList.get(position).getAuteur());
-        filmGenre.setText(filmList.get(position).getGenre());
-        filmEmprunt.setText(filmList.get(position).isEmprunt()?"est emprunter":"disponible");
-        filmNomEmprunt.setText(filmList.get(position).getNomEmprunteur());
+        titre = "Titre : "+filmList.get(position).getTitre();
+        auteur = "Auteur : "+filmList.get(position).getAuteur();
+        genre = "Genre : "+filmList.get(position).getGenre();
+        emprunt = "Emprunt : ";
+        emprunt += filmList.get(position).isEmprunt()?"est emprunter":"disponible";
+        nomEmprunt = "Nom : "+filmList.get(position).getNomEmprunteur();
+        filmTitre.setText(titre);
+        filmAuteur.setText(auteur);
+        filmGenre.setText(genre);
+        filmEmprunt.setText(emprunt);
+        filmNomEmprunt.setText(nomEmprunt);
 
 //------------ Début de l'ajout -------
 //On mémorise la position de la "Personne" dans le composant textview
