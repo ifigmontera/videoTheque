@@ -1,11 +1,11 @@
-package com.example.ifigm.mavideotheque.view.fragment;
+package com.example.ifigm.mavideotheque.view.Fragment;
 
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.LinearLayout;
+
 import android.widget.ListView;
 
 import com.example.ifigm.mavideotheque.R;
@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by ifigm on 14/09/2016.
  */
-public class FragmentFilm extends Fragment implements FilmAdapter.FilmAdapterListener {
+public class FragmentFilmEmprunt extends Fragment implements FilmAdapter.FilmAdapterListener {
 
     //variable
     private AppCompatActivity pContext;
@@ -35,9 +35,10 @@ public class FragmentFilm extends Fragment implements FilmAdapter.FilmAdapterLis
         super.onActivityCreated(b);
 
         pContext = (AppCompatActivity) getActivity();
-        LinearLayout l = (LinearLayout) getActivity().findViewById(R.id.list);
-        listView = (ListView) getActivity().findViewById(R.id.);
-        Log.e("test", l+"");
+
+        listView = (ListView) getActivity().findViewById(R.id.liste_item_emprunt);
+        Log.e("test", listView+"");
+
         filmBDD = new FilmBDD(pContext);
         filmBDD.open();
         if(!filmBDD.getMaBaseSQLite().isCreate(filmBDD.getBDD())) {
@@ -92,7 +93,7 @@ public class FragmentFilm extends Fragment implements FilmAdapter.FilmAdapterLis
         }
 
         FilmAdapter adapter = new FilmAdapter(films,pContext);
-        adapter.addListener(FragmentFilm.this);
+        adapter.addListener(FragmentFilmEmprunt.this);
         listView.setAdapter(adapter);
     }
 }

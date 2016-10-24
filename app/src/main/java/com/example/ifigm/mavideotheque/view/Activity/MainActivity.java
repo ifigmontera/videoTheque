@@ -8,21 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.ifigm.mavideotheque.R;
-import com.example.ifigm.mavideotheque.control.FilmAdapter;
 import com.example.ifigm.mavideotheque.control.FilmBDD;
 import com.example.ifigm.mavideotheque.model.Film;
 import com.example.ifigm.mavideotheque.view.Popup.PopupAdd;
-import com.example.ifigm.mavideotheque.view.Popup.PopupAuteur;
-import com.example.ifigm.mavideotheque.view.Popup.PopupEmprunt;
-import com.example.ifigm.mavideotheque.view.Popup.PopupGenre;
 import com.example.ifigm.mavideotheque.view.Popup.PopupRemove;
-import com.example.ifigm.mavideotheque.view.Popup.PopupTitre;
-import com.example.ifigm.mavideotheque.view.fragment.SectionPageAdapter;
+import com.example.ifigm.mavideotheque.view.Fragment.SectionPageAdapter;
 
 import java.util.List;
 

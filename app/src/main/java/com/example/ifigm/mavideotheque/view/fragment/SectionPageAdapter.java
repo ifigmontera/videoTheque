@@ -1,4 +1,4 @@
-package com.example.ifigm.mavideotheque.view.fragment;
+package com.example.ifigm.mavideotheque.view.Fragment;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,8 +8,8 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 public class SectionPageAdapter extends FragmentPagerAdapter {
 
-    private FragmentFilm toutFilm = new FragmentFilm();
-    private FragmentFilm toutFilm2 = new FragmentFilm();
+    private FragmentToutFilm toutFilm = new FragmentToutFilm();
+    private FragmentFilmEmprunt toutFilm2 = new FragmentFilmEmprunt();
 
 
     public SectionPageAdapter(FragmentManager fm) {
@@ -39,7 +39,7 @@ public class SectionPageAdapter extends FragmentPagerAdapter {
                 return "Tout Film";
 
             default:
-                return "Tout Film";
+                return "Dilm Emprunte";
         }
     }
 
