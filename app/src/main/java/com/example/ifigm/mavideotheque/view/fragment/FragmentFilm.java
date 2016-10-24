@@ -5,13 +5,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.example.ifigm.mavideotheque.R;
 import com.example.ifigm.mavideotheque.control.FilmAdapter;
 import com.example.ifigm.mavideotheque.control.FilmBDD;
 import com.example.ifigm.mavideotheque.model.Film;
-import com.example.ifigm.mavideotheque.view.Activity.MainActivity;
+
 import com.example.ifigm.mavideotheque.view.Popup.PopupAuteur;
 import com.example.ifigm.mavideotheque.view.Popup.PopupEmprunt;
 import com.example.ifigm.mavideotheque.view.Popup.PopupGenre;
@@ -34,9 +35,9 @@ public class FragmentFilm extends Fragment implements FilmAdapter.FilmAdapterLis
         super.onActivityCreated(b);
 
         pContext = (AppCompatActivity) getActivity();
-
-        listView = (ListView) pContext.findViewById(R.id.listItem);
-        Log.e("test", pContext+"");
+        LinearLayout l = (LinearLayout) getActivity().findViewById(R.id.list);
+        listView = (ListView) getActivity().findViewById(R.id.);
+        Log.e("test", l+"");
         filmBDD = new FilmBDD(pContext);
         filmBDD.open();
         if(!filmBDD.getMaBaseSQLite().isCreate(filmBDD.getBDD())) {
