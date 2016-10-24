@@ -1,71 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/main"
-    tools:context="com.example.ifigm.mavideotheque.MainActivity">
-
-    <LinearLayout
+    tools:context=".view.Activity.MainActivity">
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#ecf0f1"
+        android:layout_height="wrap_content"
+        android:id="@+id/app_bar_layout">
 
-        tools:ignore="UselessParent">
-
-        <LinearLayout
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1"
-            android:gravity="center"
-            >
+            android:layout_height="wrap_content" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/titreButtonFilm"
-                android:background="@drawable/selector_film"
-                android:textSize="25sp"
-                android:id="@+id/buttonFilm"
-                tools:ignore="ButtonStyle"
-                android:layout_weight="0.33"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/titreButtonCritere"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/selector_critere"
-                android:textSize="25sp"
-                android:id="@+id/buttonCriteria"
-                tools:ignore="ButtonStyle,RtlHardcoded"
-                android:layout_weight="0.33"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:text="@string/titreButtonEmprunt"
-                android:background="@drawable/selector_emprunt"
-                android:id="@+id/buttonEmprunt"
-                android:layout_weight="0.33"/>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <android.support.v4.view.ViewPager
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:id="@+id/pager">
 
-
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/listItem"/>
-        </LinearLayout>
-    </LinearLayout>
+        </android.support.v4.view.ViewPager>
+    </android.support.design.widget.AppBarLayout>
 
 
 
-</LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
