@@ -5,4 +5,7 @@
     <string name="titreButtonCritere">critère de recherche</string>
     <string name="titreButtonFilm">Tous mes films</string>
     <string name="titreRemove">ecrire un titre</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

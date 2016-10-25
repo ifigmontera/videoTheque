@@ -26,7 +26,7 @@ public class PopupRemove extends Dialog{
     private Button buttonRemove;
 
 
-    public PopupRemove(Context context, final FilmBDD filmBDD) {
+    public PopupRemove(Context context, final FilmBDD filmBDD ) {
         super(context);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.setContentView(R.layout.popup_remove);
@@ -41,12 +41,15 @@ public class PopupRemove extends Dialog{
             @Override
             public void onClick(View v) {
                 filmBDD.open();
+                List<Film> films = filmBDD.getFilm();
                 if(editTextTitre.getText().length()==0){
                     
                 }
                 filmBDD.deleteFilm(editTextTitre.getText().toString());
-                List<Film> films = new ArrayList<Film>();
-                films = filmBDD.getFilm();
+                for(Film f : films){
+                    if(editTextTitre.getText().equals(f.getTitre()))
+                        films.remove(f);
+                }
                 filmBDD.close();
                 FilmAdapter adapter = new FilmAdapter(films,pContext);
                 adapter.notifyDataSetChanged();

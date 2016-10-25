@@ -40,8 +40,7 @@ public class FilmHandler extends SQLiteOpenHelper {
     }
 
     public boolean isCreate(SQLiteDatabase db){
-        if((db.query(FILM_TABLE_NAME,new String[]{FILM_ID},null,null,null,null,null,null))!=null)return true;
-        return false;
+        return (db.query(FILM_TABLE_NAME, new String[]{FILM_ID}, null, null, null, null, null, null)) != null;
     }
 
     @Override

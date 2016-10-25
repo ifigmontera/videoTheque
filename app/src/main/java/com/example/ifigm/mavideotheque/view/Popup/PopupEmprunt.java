@@ -8,13 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.ifigm.mavideotheque.MainActivity;
 import com.example.ifigm.mavideotheque.R;
 import com.example.ifigm.mavideotheque.control.FilmAdapter;
 import com.example.ifigm.mavideotheque.control.FilmBDD;
 import com.example.ifigm.mavideotheque.model.Film;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -28,8 +28,7 @@ public class Film implements Parcelable {
         titre = in.readString();
         auteur= in.readString();
         genre = in.readString();
-        if(in.readString().equals("true"))emprunt = true;
-        else emprunt = false;
+        emprunt = in.readString().equals("true");
         nomEmprunteur = in.readString();
 
 
