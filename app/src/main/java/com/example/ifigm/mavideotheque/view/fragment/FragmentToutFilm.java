@@ -1,18 +1,26 @@
 package com.example.ifigm.mavideotheque.view.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.ifigm.mavideotheque.R;
 import com.example.ifigm.mavideotheque.control.FilmAdapter;
 import com.example.ifigm.mavideotheque.control.FilmBDD;
 import com.example.ifigm.mavideotheque.model.Film;
 
+import com.example.ifigm.mavideotheque.view.Activity.MainActivity;
+import com.example.ifigm.mavideotheque.view.Popup.PopupAdd;
 import com.example.ifigm.mavideotheque.view.Popup.PopupAuteur;
 import com.example.ifigm.mavideotheque.view.Popup.PopupEmprunt;
 import com.example.ifigm.mavideotheque.view.Popup.PopupGenre;
@@ -27,37 +35,40 @@ public class FragmentToutFilm extends Fragment implements FilmAdapter.FilmAdapte
 
     //variable
     private AppCompatActivity pContext;
+    private FloatingActionButton add;
     private List<Film> films;
     private ListView listView;
     private FilmBDD filmBDD;
+
     @Override
-    public void onActivityCreated (Bundle b){
-        super.onActivityCreated(b);
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_fragment_tout_film, container, false);
+        listView = (ListView) rootView.findViewById(R.id.liste_item);
+        add = (FloatingActionButton) rootView.findViewById((R.id.add));
         pContext = (AppCompatActivity) getActivity();
-
-        listView = (ListView) getActivity().findViewById(R.id.liste_item);
-        Log.e("test", listView+"");
-
         filmBDD = new FilmBDD(pContext);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupAdd popAdd = new PopupAdd(pContext, filmBDD);
+                popAdd.show();
+
+            }
+        });
         filmBDD.open();
         if(!filmBDD.getMaBaseSQLite().isCreate(filmBDD.getBDD())) {
             filmBDD.getMaBaseSQLite().reinitializeTable(filmBDD.getBDD());
-            Log.e("test2", filmBDD.toString()+ "2");
         }else {
             films = filmBDD.getFilm();
-            Log.e("test2",films.size()+"");
-            for(Film film : films){
-                Log.e("test2",film.getAuteur()+"2");
-            }
             FilmAdapter adapter = new FilmAdapter(films, pContext);
             adapter.addListener(this);
-
-            //listView.setAdapter(adapter);
+            listView.setAdapter(adapter);
         }
         filmBDD.close();
-
+        return rootView;
     }
+
 
     @Override
     public void onClickFilm(Film item, int position) {
@@ -95,5 +106,16 @@ public class FragmentToutFilm extends Fragment implements FilmAdapter.FilmAdapte
         FilmAdapter adapter = new FilmAdapter(films,pContext);
         adapter.addListener(FragmentToutFilm.this);
         listView.setAdapter(adapter);
+    }
+
+    public void display(Film film){
+        films.add(film);
+
+
+        FilmAdapter adapter = new FilmAdapter(films, pContext);
+        adapter.addListener(this);
+        listView.setAdapter(adapter);
+
+
     }
 }

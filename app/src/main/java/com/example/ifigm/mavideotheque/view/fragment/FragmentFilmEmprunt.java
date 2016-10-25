@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.ifigm.mavideotheque.R;
@@ -31,12 +34,13 @@ public class FragmentFilmEmprunt extends Fragment implements FilmAdapter.FilmAda
     private ListView listView;
     private FilmBDD filmBDD;
     @Override
-    public void onActivityCreated (Bundle b){
-        super.onActivityCreated(b);
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_fragment_fil_emprunt, container, false);
+        listView = (ListView) rootView.findViewById(R.id.liste_item_emprunt);
         pContext = (AppCompatActivity) getActivity();
 
-        listView = (ListView) getActivity().findViewById(R.id.liste_item_emprunt);
+
         Log.e("test", listView+"");
 
         filmBDD = new FilmBDD(pContext);
@@ -45,7 +49,7 @@ public class FragmentFilmEmprunt extends Fragment implements FilmAdapter.FilmAda
             filmBDD.getMaBaseSQLite().reinitializeTable(filmBDD.getBDD());
             Log.e("test2", filmBDD.toString()+ "2");
         }else {
-            films = filmBDD.getFilm();
+            films = filmBDD.getFilmEmprunte();
             Log.e("test2",films.size()+"");
             for(Film film : films){
                 Log.e("test2",film.getAuteur()+"2");
@@ -56,7 +60,7 @@ public class FragmentFilmEmprunt extends Fragment implements FilmAdapter.FilmAda
             listView.setAdapter(adapter);
         }
         filmBDD.close();
-
+        return rootView;
     }
 
     @Override

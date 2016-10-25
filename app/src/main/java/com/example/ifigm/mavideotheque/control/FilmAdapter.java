@@ -62,7 +62,7 @@ public class FilmAdapter extends BaseAdapter {
         TextView filmEmprunt = (TextView)linearLayout.findViewById(R.id.textViewFilmEmprunt);
         TextView filmNomEmprunt = (TextView)linearLayout.findViewById(R.id.textViewFilmNomEmprunt);
 
-        Log.e("test",filmList.get(position).getTitre()+" "+ filmList.get(position).getAuteur()+" "+filmList.get(position).getGenre()+" "+position);
+
         titre = "Titre : "+filmList.get(position).getTitre();
         auteur = "Auteur : "+filmList.get(position).getAuteur();
         genre = "Genre : "+filmList.get(position).getGenre();
@@ -149,10 +149,10 @@ public class FilmAdapter extends BaseAdapter {
     }
 
     public interface FilmAdapterListener {
-        public void onClickFilm(Film item, int position);
-        public void onClickAuteur(Film item, int position);
-        public void onClickGenre(Film item, int position);
-        public void onClickDisponible(Film item, int position);
+        void onClickFilm(Film item, int position);
+        void onClickAuteur(Film item, int position);
+        void onClickGenre(Film item, int position);
+        void onClickDisponible(Film item, int position);
 
     }
     private ArrayList<FilmAdapterListener> mListListener = new ArrayList<FilmAdapterListener>();

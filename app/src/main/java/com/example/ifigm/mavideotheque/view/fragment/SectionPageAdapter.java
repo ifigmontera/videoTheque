@@ -23,6 +23,7 @@ public class SectionPageAdapter extends FragmentPagerAdapter {
                 return toutFilm;
             case 1:
             default:
+
                 return toutFilm2;
         }
     }
@@ -37,9 +38,9 @@ public class SectionPageAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return "Tout Film";
-
+            case 1:
             default:
-                return "Dilm Emprunte";
+                return "Film Emprunte";
         }
     }
 

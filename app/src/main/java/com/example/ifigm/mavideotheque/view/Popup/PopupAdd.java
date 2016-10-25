@@ -2,17 +2,22 @@ package com.example.ifigm.mavideotheque.view.Popup;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.ifigm.mavideotheque.R;
 import com.example.ifigm.mavideotheque.control.FilmAdapter;
 import com.example.ifigm.mavideotheque.control.FilmBDD;
 import com.example.ifigm.mavideotheque.model.Film;
+import com.example.ifigm.mavideotheque.view.Activity.MainActivity;
+import com.example.ifigm.mavideotheque.view.Fragment.FragmentToutFilm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +36,13 @@ public class PopupAdd extends Dialog{
     private Button buttonAdd;
     private Film filme;
     private FilmBDD filmBDD;
-    public PopupAdd(Context context, final FilmBDD filmBDD) {
+
+    public PopupAdd(final Context context, final FilmBDD filmBDD) {
         super(context);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.setContentView(R.layout.popup_add);
         pContext = context;
+
 
         this.filmBDD = filmBDD;
         pop = this;
@@ -45,6 +52,7 @@ public class PopupAdd extends Dialog{
         disponible = (CheckBox)findViewById(R.id.edit_text_emprunt);
         editTextNomEmprunteur = (EditText)findViewById(R.id.edit_text_nom_emprunt);
         buttonAdd = (Button)findViewById(R.id.button_add_film);
+        Log.e("test",this.filmBDD+"");
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,17 +60,16 @@ public class PopupAdd extends Dialog{
                 filme = new Film(filmBDD.getInt(),editTextTitre.getText().toString()
                         ,editTextAuteur.getText().toString()
                         ,editTextGenre.getText().toString()
-                        ,disponible.isChecked() ? true : false
+                        , disponible.isChecked()
                         ,disponible.isChecked() ? editTextNomEmprunteur.getText().toString() : ""
                 );
                 filmBDD.insertFilm(filme);
-                List<Film> films = new ArrayList<Film>();
-                films = filmBDD.getFilm();
+                List<Film> films =filmBDD.getFilm();
                 filmBDD.close();
-                FilmAdapter adapter = new FilmAdapter(films,pContext);
+                FilmAdapter adapter = new FilmAdapter(films, pContext);
                 adapter.notifyDataSetChanged();
-
                 pop.cancel();
+
             }
         });
 
