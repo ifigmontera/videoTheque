@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/menu_add"
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@drawable/autorenew"
         app:showAsAction="always"
         android:title="Ajouter un film"/>
     <item
