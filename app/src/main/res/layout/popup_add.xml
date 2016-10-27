@@ -68,7 +68,7 @@
                 android:id="@+id/text_view_emprunt"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Disponibile : "/>
+                android:text="Emprunté : "/>
             <CheckBox
                 android:layout_width="wrap_content"
                 android:id="@+id/edit_text_emprunt"

@@ -3,6 +3,7 @@ package com.example.ifigm.mavideotheque.view.Popup;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -52,7 +53,6 @@ public class PopupAdd extends Dialog{
         disponible = (CheckBox)findViewById(R.id.edit_text_emprunt);
         editTextNomEmprunteur = (EditText)findViewById(R.id.edit_text_nom_emprunt);
         buttonAdd = (Button)findViewById(R.id.button_add_film);
-        Log.e("test",this.filmBDD+"");
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,8 +66,7 @@ public class PopupAdd extends Dialog{
                 filmBDD.insertFilm(filme);
                 List<Film> films =filmBDD.getFilm();
                 filmBDD.close();
-                FilmAdapter adapter = new FilmAdapter(films, pContext);
-                adapter.notifyDataSetChanged();
+
                 pop.cancel();
 
             }

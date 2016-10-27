@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -26,45 +27,43 @@ import com.example.ifigm.mavideotheque.view.Popup.PopupEmprunt;
 import com.example.ifigm.mavideotheque.view.Popup.PopupGenre;
 import com.example.ifigm.mavideotheque.view.Popup.PopupTitre;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by ifigm on 14/09/2016.
  */
-public class FragmentToutFilm extends Fragment implements FilmAdapter.FilmAdapterListener {
+public class FragmentToutFilm extends Fragment implements FilmAdapter.FilmAdapterListener, SwipeRefreshLayout.OnRefreshListener {
 
     //variable
     private AppCompatActivity pContext;
-    private FloatingActionButton add;
+
     private List<Film> films;
     private ListView listView;
     private FilmBDD filmBDD;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private FilmAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_fragment_tout_film, container, false);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh);
         listView = (ListView) rootView.findViewById(R.id.liste_item);
-        add = (FloatingActionButton) rootView.findViewById((R.id.add));
+
         pContext = (AppCompatActivity) getActivity();
         filmBDD = new FilmBDD(pContext);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupAdd popAdd = new PopupAdd(pContext, filmBDD);
-                popAdd.show();
 
-            }
-        });
         filmBDD.open();
-        if(!filmBDD.getMaBaseSQLite().isCreate(filmBDD.getBDD())) {
+        if (!filmBDD.getMaBaseSQLite().isCreate(filmBDD.getBDD())) {
             filmBDD.getMaBaseSQLite().reinitializeTable(filmBDD.getBDD());
-        }else {
+        } else {
             films = filmBDD.getFilm();
-            FilmAdapter adapter = new FilmAdapter(films, pContext);
+            adapter = new FilmAdapter(films, pContext);
             adapter.addListener(this);
             listView.setAdapter(adapter);
         }
+        mSwipeRefreshLayout.setOnRefreshListener(this);
         filmBDD.close();
         return rootView;
     }
@@ -90,11 +89,11 @@ public class FragmentToutFilm extends Fragment implements FilmAdapter.FilmAdapte
 
     @Override
     public void onClickDisponible(Film item, int position) {
-        if(!item.isEmprunt()) {
+        if (!item.isEmprunt()) {
             PopupEmprunt pop = new PopupEmprunt(pContext, item, filmBDD);
             pop.show();
 
-        }else {
+        } else {
             item.setEmprunt(false);
             item.setNomEmprunteur("");
             filmBDD.open();
@@ -103,12 +102,12 @@ public class FragmentToutFilm extends Fragment implements FilmAdapter.FilmAdapte
 
         }
 
-        FilmAdapter adapter = new FilmAdapter(films,pContext);
+        FilmAdapter adapter = new FilmAdapter(films, pContext);
         adapter.addListener(FragmentToutFilm.this);
         listView.setAdapter(adapter);
     }
 
-    public void display(Film film){
+    public void display(Film film) {
         films.add(film);
 
 
@@ -117,5 +116,26 @@ public class FragmentToutFilm extends Fragment implements FilmAdapter.FilmAdapte
         listView.setAdapter(adapter);
 
 
+    }
+
+    @Override
+    public void onRefresh() {
+        List<Film> tFilms = new ArrayList<Film>();
+        filmBDD.open();
+        tFilms = filmBDD.getFilm();
+
+
+
+        films.clear();
+
+        for (Film f : tFilms) {
+            films.add(f);
+            Log.e("test", films.size()+"");
+
+        }
+
+        adapter.notifyDataSetChanged();
+        mSwipeRefreshLayout.setRefreshing(false);
+        listView.setAdapter(adapter);
     }
 }

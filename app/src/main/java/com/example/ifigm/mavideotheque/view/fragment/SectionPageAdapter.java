@@ -40,7 +40,7 @@ public class SectionPageAdapter extends FragmentPagerAdapter {
                 return "Tout Film";
             case 1:
             default:
-                return "Film Emprunte";
+                return "Film Emprunté";
         }
     }
 
