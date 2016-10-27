@@ -10,10 +10,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.ifigm.mavideotheque.view.Fragment.FragmentFilmEmprunt">
 
-    <ListView
+    <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/liste_item_emprunt">
-    </ListView>
+        android:id="@+id/swipe_refresh_emprunt">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/liste_item_emprunt">
+        </ListView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

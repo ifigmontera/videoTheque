@@ -107,17 +107,6 @@ public class FragmentToutFilm extends Fragment implements FilmAdapter.FilmAdapte
         listView.setAdapter(adapter);
     }
 
-    public void display(Film film) {
-        films.add(film);
-
-
-        FilmAdapter adapter = new FilmAdapter(films, pContext);
-        adapter.addListener(this);
-        listView.setAdapter(adapter);
-
-
-    }
-
     @Override
     public void onRefresh() {
         List<Film> tFilms = new ArrayList<Film>();

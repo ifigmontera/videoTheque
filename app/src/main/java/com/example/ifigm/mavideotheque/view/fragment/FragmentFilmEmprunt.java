@@ -3,6 +3,7 @@ package com.example.ifigm.mavideotheque.view.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -21,22 +22,26 @@ import com.example.ifigm.mavideotheque.view.Popup.PopupEmprunt;
 import com.example.ifigm.mavideotheque.view.Popup.PopupGenre;
 import com.example.ifigm.mavideotheque.view.Popup.PopupTitre;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by ifigm on 14/09/2016.
  */
-public class FragmentFilmEmprunt extends Fragment implements FilmAdapter.FilmAdapterListener {
+public class FragmentFilmEmprunt extends Fragment implements FilmAdapter.FilmAdapterListener, SwipeRefreshLayout.OnRefreshListener {
 
     //variable
     private AppCompatActivity pContext;
     private List<Film> films;
     private ListView listView;
     private FilmBDD filmBDD;
+    private FilmAdapter adapter;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_fragment_fil_emprunt, container, false);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_emprunt);
         listView = (ListView) rootView.findViewById(R.id.liste_item_emprunt);
         pContext = (AppCompatActivity) getActivity();
 
@@ -54,11 +59,12 @@ public class FragmentFilmEmprunt extends Fragment implements FilmAdapter.FilmAda
             for(Film film : films){
                 Log.e("test2",film.getAuteur()+"2");
             }
-            FilmAdapter adapter = new FilmAdapter(films, pContext);
+            adapter = new FilmAdapter(films, pContext);
             adapter.addListener(this);
 
             listView.setAdapter(adapter);
         }
+        mSwipeRefreshLayout.setOnRefreshListener(this);
         filmBDD.close();
         return rootView;
     }
@@ -96,8 +102,30 @@ public class FragmentFilmEmprunt extends Fragment implements FilmAdapter.FilmAda
 
         }
 
-        FilmAdapter adapter = new FilmAdapter(films,pContext);
+        adapter = new FilmAdapter(films,pContext);
         adapter.addListener(FragmentFilmEmprunt.this);
         listView.setAdapter(adapter);
     }
+
+    @Override
+    public void onRefresh() {
+        List<Film> tFilms = new ArrayList<Film>();
+        filmBDD.open();
+        tFilms = filmBDD.getFilmEmprunte();
+        Log.e("test","test5");
+
+
+        films.clear();
+
+        for (Film f : tFilms) {
+            films.add(f);
+            Log.e("test", films.size()+"");
+
+        }
+
+        adapter.notifyDataSetChanged();
+        mSwipeRefreshLayout.setRefreshing(false);
+        listView.setAdapter(adapter);
+    }
+
 }
