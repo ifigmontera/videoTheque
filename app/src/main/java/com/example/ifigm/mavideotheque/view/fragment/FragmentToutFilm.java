@@ -43,6 +43,7 @@ public class FragmentToutFilm extends Fragment implements FilmAdapter.FilmAdapte
     private FilmBDD filmBDD;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private FilmAdapter adapter;
+//    private FloatingActionButton up;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,9 +51,17 @@ public class FragmentToutFilm extends Fragment implements FilmAdapter.FilmAdapte
         View rootView = inflater.inflate(R.layout.activity_fragment_tout_film, container, false);
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh);
         listView = (ListView) rootView.findViewById(R.id.liste_item);
-
+//        up = (FloatingActionButton) rootView.findViewById(R.id.up);
         pContext = (AppCompatActivity) getActivity();
         filmBDD = new FilmBDD(pContext);
+//        up.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.e("test",listView.getMaxScrollAmount()+"");
+//
+//
+//            }
+//        });
 
         filmBDD.open();
         if (!filmBDD.getMaBaseSQLite().isCreate(filmBDD.getBDD())) {
@@ -105,17 +114,6 @@ public class FragmentToutFilm extends Fragment implements FilmAdapter.FilmAdapte
         FilmAdapter adapter = new FilmAdapter(films, pContext);
         adapter.addListener(FragmentToutFilm.this);
         listView.setAdapter(adapter);
-    }
-
-    public void display(Film film) {
-        films.add(film);
-
-
-        FilmAdapter adapter = new FilmAdapter(films, pContext);
-        adapter.addListener(this);
-        listView.setAdapter(adapter);
-
-
     }
 
     @Override
