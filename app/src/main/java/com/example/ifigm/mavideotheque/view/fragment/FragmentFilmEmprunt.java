@@ -2,6 +2,7 @@ package com.example.ifigm.mavideotheque.view.Fragment;
 
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +38,7 @@ public class FragmentFilmEmprunt extends Fragment implements FilmAdapter.FilmAda
     private FilmBDD filmBDD;
     private FilmAdapter adapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

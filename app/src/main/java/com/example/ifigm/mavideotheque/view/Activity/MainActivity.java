@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 
 
 import com.example.ifigm.mavideotheque.R;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private FloatingActionButton add;
     private FloatingActionButton min;
+    private FloatingActionButton up;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar =   (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(false);
         context = MainActivity.this;
 
         // Gestion des fragment
@@ -54,12 +57,17 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.pager);
         add = (FloatingActionButton) findViewById(R.id.add);
         min = (FloatingActionButton) findViewById(R.id.min);
+
+        listView = (ListView) findViewById(R.id.liste_item);
         viewPager.setAdapter(new SectionPageAdapter(getSupportFragmentManager()));
         tab.setupWithViewPager(viewPager);
+
+
         filmBDD = new FilmBDD(this);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 PopupAdd popAdd = new PopupAdd(MainActivity.this, filmBDD);
                 popAdd.show();
                 Snackbar.make(v,"Film ajouté, veuillez mettre à jour",Snackbar.LENGTH_INDEFINITE).setAction("MAJ", new View.OnClickListener() {
@@ -71,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 }).show();
+
             }
         });
 
