@@ -72,6 +72,7 @@ public class FragmentToutFilm extends Fragment implements FilmAdapter.FilmAdapte
             adapter.addListener(this);
             listView.setAdapter(adapter);
         }
+
         mSwipeRefreshLayout.setOnRefreshListener(this);
         filmBDD.close();
         return rootView;
