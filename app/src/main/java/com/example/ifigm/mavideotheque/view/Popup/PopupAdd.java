@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ifigm.mavideotheque.R;
 import com.example.ifigm.mavideotheque.control.FilmAdapter;
@@ -43,8 +44,6 @@ public class PopupAdd extends Dialog{
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.setContentView(R.layout.popup_add);
         pContext = context;
-
-
         this.filmBDD = filmBDD;
         pop = this;
         editTextTitre = (EditText)findViewById(R.id.edit_text_titre);
@@ -56,19 +55,21 @@ public class PopupAdd extends Dialog{
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filmBDD.open();
-                filme = new Film(filmBDD.getInt(),editTextTitre.getText().toString()
-                        ,editTextAuteur.getText().toString()
-                        ,editTextGenre.getText().toString()
-                        , disponible.isChecked()
-                        ,disponible.isChecked() ? editTextNomEmprunteur.getText().toString() : ""
-                );
-                filmBDD.insertFilm(filme);
-                List<Film> films =filmBDD.getFilm();
-                filmBDD.close();
+                if((editTextTitre.getText().length() == 0) || (editTextTitre.getText().equals(" "))){
+                    editTextTitre.setError("il manque un titre");
+                }else{
+                    filmBDD.open();
+                    filme = new Film(filmBDD.getInt(),editTextTitre.getText().toString()
+                            ,editTextAuteur.getText().toString()
+                            ,editTextGenre.getText().toString()
+                            ,disponible.isChecked()
+                            ,disponible.isChecked() ? editTextNomEmprunteur.getText().toString() : ""
+                    );
 
-                pop.cancel();
-
+                    filmBDD.insertFilm(filme);
+                    filmBDD.close();
+                    pop.cancel();
+                }
             }
         });
 

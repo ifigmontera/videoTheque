@@ -62,24 +62,12 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(new SectionPageAdapter(getSupportFragmentManager()));
         tab.setupWithViewPager(viewPager);
 
-
         filmBDD = new FilmBDD(this);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 PopupAdd popAdd = new PopupAdd(MainActivity.this, filmBDD);
                 popAdd.show();
-                Snackbar.make(v,"Film ajouté, veuillez mettre à jour",Snackbar.LENGTH_INDEFINITE).setAction("MAJ", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        finish();
-                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                        startActivity(intent);
-
-                    }
-                }).show();
-
             }
         });
 
