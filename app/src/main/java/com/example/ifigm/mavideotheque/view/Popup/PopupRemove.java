@@ -43,18 +43,19 @@ public class PopupRemove extends Dialog{
                 filmBDD.open();
                 List<Film> films = filmBDD.getFilm();
                 if(editTextTitre.getText().length()==0){
-                    
-                }
-                filmBDD.deleteFilm(editTextTitre.getText().toString());
-                for(Film f : films){
-                    if(editTextTitre.getText().equals(f.getTitre()))
-                        films.remove(f);
-                }
-                filmBDD.close();
-                FilmAdapter adapter = new FilmAdapter(films,pContext);
-                adapter.notifyDataSetChanged();
+                    editTextTitre.setError("Il manque un titre");
+                }else {
+                    filmBDD.deleteFilm(editTextTitre.getText().toString());
+                    for (Film f : films) {
+                        if (editTextTitre.getText().equals(f.getTitre()))
+                            films.remove(f);
+                    }
+                    filmBDD.close();
+                    FilmAdapter adapter = new FilmAdapter(films, pContext);
+                    adapter.notifyDataSetChanged();
 
-                pop.cancel();
+                    pop.cancel();
+                }
             }
         });
 
